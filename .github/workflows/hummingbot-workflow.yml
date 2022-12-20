@@ -27,18 +27,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
+          context: .
+          file: ./Dockerfile
           push: true
-          tags: jamalshahverdiev/hummingbot:${{ steps.vars.outputs.sha_short }}
-          
-# on: [push]
-
-# jobs:
-#   build:
-#     name: Hello world
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Write a multi-line message
-#       run: |
-#         echo This demo file shows a 
-#         echo very basic and easy-to-understand workflow.
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hummingbot:latest
